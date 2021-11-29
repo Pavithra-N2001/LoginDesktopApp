@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,10 @@ namespace LoginDesktopApp
             {
                 errormessage.Text = "Enter a Username.";
             }
+            else if(!Regex.IsMatch(txtemail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+            {
+                errormessage.Text = "Enter a valid email.";
+            }
             else if (txtPassword.Password != repPassword.Password)
             {
                 errormessage.Text = "Confirm password must be same as password.";
@@ -38,6 +43,7 @@ namespace LoginDesktopApp
             else
             {
                 String name = txtUsername.Text;
+                String mail = txtemail.Text;
                 String passWord = txtPassword.Password;
                 String repPass = repPassword.Password;
 
@@ -52,7 +58,7 @@ namespace LoginDesktopApp
                 adapter.Fill(dataSet);
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
-                    SqlCommand cm = new SqlCommand("Insert into tblUser (UserName,Password) values('" + name + "','" + passWord + "')", sqlCon);
+                    SqlCommand cm = new SqlCommand("Insert into tblUser (UserName,Password,Email) values('" + name + "','" + passWord + "','"+mail+"')", sqlCon);
                     cm.CommandType = CommandType.Text;
                     cm.ExecuteNonQuery();
                     sqlCon.Close();

@@ -14,6 +14,8 @@
             <Separator></Separator>
             <Label Content="Username" Foreground="White"/>
             <TextBox Name="txtUsername" Background="Green"  Foreground="White" FontSize="18"/>
+            <Label Content="Email" Foreground="White"/>
+            <TextBox Name="txtemail" Background="Green"  Foreground="White" FontSize="18"/>
             <Label Content="Password" Foreground="White"/>
             <PasswordBox Name="txtPassword" Background="Green"  Foreground="White" FontSize="18"/>
             <Label Content="Repeat Password" Foreground="White"/>

@@ -34,7 +34,7 @@ namespace LoginDesktopApp
             string password = txtPassword.Password;
             SqlConnection sqlCon = new SqlConnection(@"Data Source=LAPTOP-DROLOIQS;Initial Catalog=LoginDB;Integrated Security=True");
             sqlCon.Open();
-            SqlCommand cmd = new SqlCommand("Select * from tblUser where username='" + name + "' and password='" + password + "'", sqlCon);
+            SqlCommand cmd = new SqlCommand("Select * from tblUser where username='" + name + "' or Email='"+ name +"' and password='" + password + "'", sqlCon);
             cmd.CommandType = CommandType.Text;
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.SelectCommand = cmd;
