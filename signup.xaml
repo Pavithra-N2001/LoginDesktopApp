@@ -1,0 +1,28 @@
+﻿<Page x:Class="LoginDesktopApp.signup"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LoginDesktopApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="signup">
+    
+
+    <Border Background="Black" CornerRadius="20" Margin="20">
+        <StackPanel Margin="20">
+            <TextBlock Height="20" HorizontalAlignment="Left" Margin="67,0,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+            <Label Content="Register" Foreground="Brown" FontSize="25" HorizontalAlignment="Center" />
+            <Separator></Separator>
+            <Label Content="Username" Foreground="White"/>
+            <TextBox Name="txtUsername" Background="Green"  Foreground="White" FontSize="18"/>
+            <Label Content="Email" Foreground="White"/>
+            <TextBox Name="txtemail" Background="Green"  Foreground="White" FontSize="18"/>
+            <Label Content="Password" Foreground="White"/>
+            <PasswordBox Name="txtPassword" Background="Green"  Foreground="White" FontSize="18"/>
+            <Label Content="Repeat Password" Foreground="White"/>
+            <PasswordBox Name="repPassword" Background="Green"  Foreground="White" FontSize="18"/>
+            <Button Click="reg_Click" Name="reg" Content="Sign Up" Margin="60 10" Foreground="White" FontSize="18" Background="#545d6a" />
+        </StackPanel>
+    </Border>
+</Page>

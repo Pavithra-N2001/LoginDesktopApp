@@ -13,26 +13,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LoginDesktopApp
 {
     /// <summary>
-    /// Interaction logic for Register.xaml
+    /// Interaction logic for signup.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class signup : Page
     {
-        public Register()
+        public signup()
         {
             InitializeComponent();
         }
+
         private void reg_Click(object sender, RoutedEventArgs e)
         {
             if (txtUsername.Text.Length == 0)
             {
                 errormessage.Text = "Enter a Username.";
             }
-            else if(!Regex.IsMatch(txtemail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+            else if (!Regex.IsMatch(txtemail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
             {
                 errormessage.Text = "Enter a valid email.";
             }
@@ -58,7 +60,7 @@ namespace LoginDesktopApp
                 adapter.Fill(dataSet);
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
-                    SqlCommand cm = new SqlCommand("Insert into tblUser (UserName,Password,Email) values('" + name + "','" + passWord + "','"+mail+"')", sqlCon);
+                    SqlCommand cm = new SqlCommand("Insert into tblUser (UserName,Password,Email) values('" + name + "','" + passWord + "','" + mail + "')", sqlCon);
                     cm.CommandType = CommandType.Text;
                     cm.ExecuteNonQuery();
                     sqlCon.Close();
@@ -70,8 +72,6 @@ namespace LoginDesktopApp
                 }
 
             }
-
         }
-
     }
 }
