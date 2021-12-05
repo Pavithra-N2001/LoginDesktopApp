@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -49,18 +50,18 @@ namespace LoginDesktopApp
                 String passWord = txtPassword.Password;
                 //String repPass = repPassword.Password;
 
-                SqlConnection sqlCon = new SqlConnection(@"Data Source=LAPTOP-DROLOIQS;Initial Catalog=LoginDB;Integrated Security=True");
+                MySqlConnection sqlCon = new MySqlConnection(@"server = localhost; uid = root; pwd = root; database = dhyacams");
                 sqlCon.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * from tblUser where username='" + name + "'", sqlCon);
+                MySqlCommand cmd = new MySqlCommand("Select * from admin where UserName='" + name + "'", sqlCon);
                 cmd.CommandType = CommandType.Text;
-                SqlDataAdapter adapter = new SqlDataAdapter();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
                 adapter.SelectCommand = cmd;
                 DataSet dataSet = new DataSet();
                 adapter.Fill(dataSet);
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
-                    SqlCommand cm = new SqlCommand("Insert into tblUser (UserName,Password,Email) values('" + name + "','" + passWord + "','" + mail + "')", sqlCon);
+                    MySqlCommand cm = new MySqlCommand("Insert into admin (UserName,Password,UserEmail) values('" + name + "','" + passWord + "','" + mail + "')", sqlCon);
                     cm.CommandType = CommandType.Text;
                     cm.ExecuteNonQuery();
                     sqlCon.Close();
@@ -75,3 +76,4 @@ namespace LoginDesktopApp
         }
     }
 }
+

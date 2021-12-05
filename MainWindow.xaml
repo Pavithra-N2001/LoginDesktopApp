@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" x:Name="WelcomeHeading" Text="Welcome:" VerticalAlignment="Top" FontSize="17" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="101,10,0,0" x:Name ="TextBlockName" VerticalAlignment="Top" Width="211"  FontSize="17" Foreground="#FFE5572C"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Click="Login_Click" x:Name="Login" Margin="20,0,20,20" VerticalAlignment="Top" Content="Login" Foreground="White" FontSize="15" Background="#545d6a" Height="28" Width="158" />
+            <Button Click="reg_Click" x:Name="reg"  Margin="20,0,20,20" Content="Sign Up" VerticalAlignment="Top" Foreground="White" FontSize="15" Background="#545d6a" Height="28" Width="158" />
+        </StackPanel>
+        <Frame x:Name="Main" Margin="0,34,0,0"></Frame>
 
     </Grid>
 </Window>

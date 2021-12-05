@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,31 +13,34 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LoginDesktopApp
 {
     /// <summary>
-    /// Interaction logic for LoginScreen.xaml
+    /// Interaction logic for login.xaml
     /// </summary>
-    public partial class LoginScreen : Window
+    public partial class login : Page
     {
-        public LoginScreen()
+        public login()
         {
             InitializeComponent();
         }
         MainWindow welcome = new MainWindow();
+        
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
 
             string name = txtUsername.Text;
             string password = txtPassword.Password;
-            SqlConnection sqlCon = new SqlConnection(@"Data Source=LAPTOP-DROLOIQS;Initial Catalog=LoginDB;Integrated Security=True");
+
+            MySqlConnection sqlCon = new MySqlConnection(@"server = localhost; uid = root; pwd = root; database = dhyacams");
             sqlCon.Open();
-            SqlCommand cmd = new SqlCommand("Select * from tblUser where username='" + name + "' or Email='"+ name +"' and password='" + password + "'", sqlCon);
+            MySqlCommand cmd = new MySqlCommand("Select * from admin where UserName='" + name + "' or UserEmail='" + name + "' and Password='" + password + "'", sqlCon);
             cmd.CommandType = CommandType.Text;
-            SqlDataAdapter adapter = new SqlDataAdapter();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
             adapter.SelectCommand = cmd;
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
@@ -47,9 +51,9 @@ namespace LoginDesktopApp
             if (dataSet.Tables[0].Rows.Count > 0)
             {
                 string username = dataSet.Tables[0].Rows[0]["username"].ToString() + " ";
-                welcome.TextBlockName.Text = username;//Sending value from one form to another form.  
-                welcome.Show();
-                Close();
+                index n = new index();
+                n.TextBlockName.Text = username;//Sending value from one form to another form.  
+                this.NavigationService.Navigate(n);
             }
             else
             {
@@ -59,13 +63,5 @@ namespace LoginDesktopApp
 
 
         }
-
-        private void Register_Click(object sender, RoutedEventArgs e)
-        {
-            Register reg = new Register();
-            reg.Show();
-
-        }
-    
-}
+    }
 }

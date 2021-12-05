@@ -24,5 +24,19 @@ namespace LoginDesktopApp
         {
             InitializeComponent();
         }
+
+        private void reg_Click(object sender, RoutedEventArgs e)
+        {
+            //Main.Content = new signup();
+            signup s = new signup();
+            Main.NavigationService.Navigate(s);
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            //Main.Content = new login();
+            login log = new login();
+            Main.NavigationService.Navigate(log);
+        }
     }
 }
